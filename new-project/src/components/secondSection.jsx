@@ -1,45 +1,45 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../pages/CartContext'
 const products=[
     {
         id:1,
         name:'wood chair',
-        price:'$150',
+        price:150,
         image:'/chairs-1.jpg'
     },
     {
         id:2,
         name:'dinning table',
-        price:'$700',
+        price:700,
         image:'/dinning-table-1.jpg'
     },
     {
         id:3,
         name:'comfort sofa',
-        price:'$550',
+        price:550,
         image:'/sofa.jpg'
     },
     {
         id:4,
         name:'comfort bed',
-        price:'$450',
+        price:450,
         image:'/beds-1.jpg'
     },
 ]
 
 export function SecondSection() {
-    
-
+const {dispatch} = useContext(CartContext) 
     return (
         <>
            <section className='container mx-auto'>
             <h2 className='text-center text-3xl font-bold uppercase mt-8 mb-6'>our feature products</h2>
             <div className='grid  md:grid-cols-3 lg:grid-cols-4 gap-4'>
                 {products.map((items)=>(
-                    <div className='p-3 shadow-lg items-center text-center'>
+                    <div className='p-3 shadow-lg items-center text-center' key={items.id}>
                      <img className='h-50 w-full rounded-md' src={items.image} alt="" />
                      <h2 className='uppercase text-xl font-bold mt-3 mb-2'>{items.name}</h2>
-                     <p className='text-xl text-red-600 mb-3'>{items.price}</p>
-                     <button className='bg-purple-900 hover:bg-purple-700 px-4 py-2 rounded-lg text-white capitalize cursor-pointer font-bold'>add to cart</button>
+                     <p className='text-xl text-red-600 mb-3'>Price: {items.price}</p>
+                     <button onClick={()=>dispatch({type:"ADD_TO_CART",payload:items})}  className='bg-purple-900 hover:bg-purple-700 px-4 py-2 rounded-lg text-white capitalize cursor-pointer font-bold'>add to cart</button>
                     </div>
                 ))}
             
