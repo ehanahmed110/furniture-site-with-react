@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 export function FirstSection() {
-    
+
 
     return (
         <>
